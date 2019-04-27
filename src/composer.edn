@@ -1,0 +1,524 @@
+{
+ :sessions {}
+ :users {
+  "UAGNB66nI" {:id "UAGNB66nI", :name "chen", :nickname "chen", :password "d41d8cd98f00b204e9800998ecf8427e", :avatar nil}
+ }
+ :templates {
+  "9GV5LFgN-" {
+   :id "9GV5LFgN-", :name "profile", :mock-pointer "base", :width 400, :height "240", :sort-key "d"
+   :mocks {
+    "base" {
+     :id "base", :name "base"
+     :data {
+      :user {:id "yy", :name "chen", :avatar nil}
+      :members {"a" "Chen", "y" "Ting"}
+     }
+    }
+   }
+   :markup {
+    :type :box, :layout :column
+    :props {}
+    :attrs {}
+    :presets #{}
+    :style {"padding" "16px"}
+    :children {
+     "T" {
+      :type :box, :layout nil
+      :props {}
+      :attrs {}
+      :presets #{}
+      :style {}
+      :children {
+       "T" {
+        :type :text, :layout nil
+        :props {"value" "\"Hello! ~{data}", "data" "@:user :name"}
+        :attrs {}
+        :presets #{}
+        :style {"font-size" "32px", "font-weight" "100", "font-family" "Josefin Sans, Helvetica neue, Arial, sans-serif"}
+        :children {}
+       }
+      }
+     }
+     "X" {
+      :type :space, :layout nil
+      :props {"height" "24"}
+      :attrs {}
+      :presets #{}
+      :style {}
+      :children {}
+     }
+     "b" {
+      :type :box, :layout :row-middle
+      :props {}
+      :attrs {}
+      :presets #{}
+      :style {}
+      :children {
+       "T" {
+        :type :text, :layout nil
+        :props {"value" "\"Members:"}
+        :attrs {}
+        :presets #{}
+        :style {}
+        :children {}
+       }
+       "j" {
+        :type :list, :layout nil
+        :props {"value" "@:members"}
+        :attrs {}
+        :presets #{}
+        :style {}
+        :children {
+         "T" {
+          :type :text, :layout nil
+          :props {"value" "@:item"}
+          :attrs {}
+          :presets #{}
+          :style {"margin-left" "8px", "border-radius" "20px", "border" "\"1px solid #eee", "padding" "4px 16px"}
+          :children {}
+         }
+        }
+       }
+      }
+     }
+     "f" {
+      :type :space, :layout nil
+      :props {"height" "24"}
+      :attrs {}
+      :presets #{}
+      :style {}
+      :children {}
+     }
+     "j" {
+      :type :box, :layout nil
+      :props {}
+      :attrs {}
+      :presets #{}
+      :style {}
+      :children {
+       "T" {
+        :type :button, :layout nil
+        :props {"text" "\"Refresh"}
+        :attrs {}
+        :presets #{}
+        :style {}
+        :children {}
+       }
+       "b" {
+        :type :space, :layout nil
+        :props {"width" "8px"}
+        :attrs {}
+        :presets #{}
+        :style {}
+        :children {}
+       }
+       "j" {
+        :type :button, :layout nil
+        :props {"text" "\"Log out"}
+        :attrs {}
+        :presets #{}
+        :style {"color" "\"red", "border-color" "\"red"}
+        :children {}
+        :event {"click" ":logout"}
+       }
+      }
+     }
+    }
+   }
+  }
+  "JAnuFZzdk" {
+   :id "JAnuFZzdk", :name "workspace", :mock-pointer "base", :width 240, :height 60, :sort-key "c"
+   :mocks {
+    "base" {
+     :id "base", :name "base"
+     :data {}
+    }
+   }
+   :markup {
+    :type :box, :layout :row
+    :props {}
+    :attrs {}
+    :presets #{}
+    :style {}
+    :children {
+     "T" {
+      :type :text, :layout nil
+      :props {"value" "\"This is workspace"}
+      :attrs {}
+      :presets #{:base-padding}
+      :style {}
+      :children {}
+     }
+    }
+   }
+  }
+  "Jp-YEri0-" {
+   :id "Jp-YEri0-", :name "container", :mock-pointer "base", :width "320", :height "320", :sort-key "j"
+   :mocks {
+    "JIaPJTv-k" {
+     :id "JIaPJTv-k", :name "guest"
+     :data {
+      :local {:username "", :password ""}
+      :site {:cdn-url "http://cdn.tiye.me/cumulo-workflow/", :icon "http://cdn.tiye.me/logo/cumulo.png", :port 5021, :title "Cumulo", :upload-folder "tiye.me:repo/Cumulo/workflow/", :theme "#eeeeff", :server-folder "tiye.me:servers/workflow", :cdn-folder "tiye.me:cdn/cumulo-workflow", :storage-key "workflow-storage", :dev-ui "http://localhost:8100/main.css", :release-ui "http://cdn.tiye.me/favored-fonts/main.css", :storage-file "storage.edn"}
+      :store {
+       :logged-in? false, :reel-length 5
+       :session {
+        :user-id nil, :id "Vov3X1dJw", :nickname nil
+        :router {:name "home", :data nil, :router nil}
+        :messages {
+         :CylUHV-TLf {:id "CylUHV-TLf", :text "No user named: chen"}
+        }
+       }
+      }
+     }
+    }
+    "_qwdBq4js" {
+     :id "_qwdBq4js", :name "offline"
+     :data {
+      :store nil
+      :local {}
+      :site {:icon "http://cdn.tiye.me/logo/cumulo.png"}
+     }
+    }
+    "base" {
+     :id "base", :name "base"
+     :data {
+      :logged-in? false, :reel-length 2
+      :session {
+       :user-id nil, :id "6U0sZ9w2Z", :nickname nil
+       :router {:name "home", :data nil, :router nil}
+       :messages {
+        :lpdSih9Map {:id "lpdSih9Map", :text "No user named: chen"}
+       }
+      }
+      :local {:username "", :password ""}
+      :site {:cdn-url "http://cdn.tiye.me/cumulo-workflow/", :icon "http://cdn.tiye.me/logo/cumulo.png", :port 5021, :title "Cumulo", :upload-folder "tiye.me:repo/Cumulo/workflow/", :theme "#eeeeff", :server-folder "tiye.me:servers/workflow", :cdn-folder "tiye.me:cdn/cumulo-workflow", :storage-key "workflow-storage", :dev-ui "http://localhost:8100/main.css", :release-ui "http://cdn.tiye.me/favored-fonts/main.css", :storage-file "storage.edn"}
+     }
+    }
+   }
+   :markup {
+    :type :some, :layout nil
+    :props {"value" "@:store", "kind" ":value"}
+    :attrs {}
+    :presets #{}
+    :style {}
+    :children {
+     "D" {
+      :type :template, :layout nil
+      :props {"name" "\"offline", "data" "@:site"}
+      :attrs {}
+      :presets #{}
+      :style {}
+      :children {}
+     }
+     "T" {
+      :type :box, :layout :column
+      :props {}
+      :attrs {}
+      :presets #{:fullscreen}
+      :style {}
+      :children {
+       "T" {
+        :type :template, :layout nil
+        :props {"name" "\"header"}
+        :attrs {"app-name" "@:site :title", "logged-in?" "@:store :logged-in?"}
+        :presets #{}
+        :style {}
+        :children {}
+       }
+       "j" {
+        :type :some, :layout nil
+        :props {"value" "@:store :logged-in?", "kind" ":boolean"}
+        :attrs {}
+        :presets #{}
+        :style {}
+        :children {
+         "D" {
+          :type :template, :layout nil
+          :props {"name" "\"login", "data" "@:local"}
+          :attrs {}
+          :presets #{}
+          :style {}
+          :children {}
+         }
+         "T" {
+          :type :case, :layout nil
+          :props {"value" "@:store :router :name", "options" "~[:home :profile]"}
+          :attrs {}
+          :presets #{}
+          :style {}
+          :children {
+           "T" {
+            :type :box, :layout nil
+            :props {}
+            :attrs {}
+            :presets #{}
+            :style {}
+            :children {
+             "T" {
+              :type :text, :layout nil
+              :props {"value" "\"Nothing selected ~{data}"}
+              :attrs {}
+              :presets #{}
+              :style {}
+              :children {}
+             }
+            }
+           }
+           "j" {
+            :type :template, :layout nil
+            :props {"name" "\"workspace", "data" "@:router"}
+            :attrs {}
+            :presets #{}
+            :style {}
+            :children {}
+           }
+           "r" {
+            :type :template, :layout nil
+            :props {"name" "\"profile"}
+            :attrs {"user" "@:store :user", "members" "@:store :router :data"}
+            :presets #{}
+            :style {}
+            :children {}
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+  "VVH4ALeuF" {
+   :id "VVH4ALeuF", :name "header", :mock-pointer "base", :width 240, :height 60, :sort-key "h"
+   :mocks {
+    "92N6J1wT5" {
+     :id "92N6J1wT5", :name "guest"
+     :data {:app-name "Cumulo Composer", :logged-in? false}
+    }
+    "base" {
+     :id "base", :name "base"
+     :data {:app-name "Cumulo Composer", :logged-in? true}
+    }
+   }
+   :markup {
+    :type :box, :layout :row-parted
+    :props {}
+    :attrs {}
+    :presets #{:base-padding}
+    :style {"border-bottom" "1px solid #eee"}
+    :children {
+     "T" {
+      :type :link, :layout nil
+      :props {"text" "@:app-name"}
+      :attrs {}
+      :presets #{}
+      :style {"font-family" "Josefin Sans, Helvetica neue, Arial, sans-serif"}
+      :children {}
+      :event {"click" ":home"}
+     }
+     "j" {
+      :type :some, :layout nil
+      :props {"kind" ":boolean", "value" "@:logged-in?"}
+      :attrs {}
+      :presets #{}
+      :style {}
+      :children {
+       "T" {
+        :type :text, :layout nil
+        :props {"value" "\"Guest"}
+        :attrs {}
+        :presets #{}
+        :style {"font-family" "Josefin Sans, Helvetica neue, Arial, sans-serif"}
+        :children {}
+        :event {}
+       }
+       "j" {
+        :type :link, :layout nil
+        :props {"text" "\"Profle"}
+        :attrs {}
+        :presets #{}
+        :style {"font-family" "Josefin Sans, Helvetica neue, Arial, sans-serif"}
+        :children {}
+        :event {"click" ":profile"}
+       }
+      }
+     }
+    }
+   }
+  }
+  "l2UpIJhsT" {
+   :id "l2UpIJhsT", :name "status-tip", :mock-pointer "base", :width "80", :height "80", :sort-key "f"
+   :mocks {
+    "base" {:id "base", :name "base", :data "hsl(240,80%,88%)"}
+   }
+   :markup {
+    :type :box, :layout :row
+    :props {}
+    :attrs {}
+    :presets #{}
+    :style {"width" "24px", "height" "24px", "background-color" "@", "border-radius" "50%", "position" "absolute", "left" "8px", "bottom" "16px"}
+    :children {}
+   }
+  }
+  "r7RWfkkhr" {
+   :id "r7RWfkkhr", :name "login", :mock-pointer "base", :width 400, :height "200", :sort-key "R"
+   :mocks {
+    "base" {
+     :id "base", :name "base"
+     :data {:username "chen", :password "unsafe code"}
+    }
+   }
+   :markup {
+    :type :box, :layout :center
+    :props {}
+    :attrs {}
+    :presets #{:expand}
+    :style {}
+    :children {
+     "T" {
+      :type :box, :layout :column
+      :props {}
+      :attrs {}
+      :presets #{}
+      :style {"width" " 200px"}
+      :children {
+       "T" {
+        :type :input, :layout nil
+        :props {"value" "@:username"}
+        :attrs {"placeholder" "\"name"}
+        :presets #{}
+        :style {}
+        :children {}
+        :event {"input" ":local/username"}
+       }
+       "j" {
+        :type :space, :layout nil
+        :props {"height" "16"}
+        :attrs {}
+        :presets #{}
+        :style {}
+        :children {}
+       }
+       "r" {
+        :type :input, :layout nil
+        :props {"value" "@:password"}
+        :attrs {"placeholder" "\"pass code"}
+        :presets #{}
+        :style {}
+        :children {}
+        :event {"input" ":local/password"}
+       }
+       "v" {
+        :type :space, :layout nil
+        :props {"height" "16"}
+        :attrs {}
+        :presets #{}
+        :style {}
+        :children {}
+       }
+       "x" {
+        :type :box, :layout :row-parted
+        :props {}
+        :attrs {}
+        :presets #{}
+        :style {}
+        :children {
+         "T" {
+          :type :box, :layout nil
+          :props {}
+          :attrs {}
+          :presets #{}
+          :style {}
+          :children {}
+         }
+         "j" {
+          :type :box, :layout nil
+          :props {}
+          :attrs {}
+          :presets #{}
+          :style {}
+          :children {
+           "T" {
+            :type :link, :layout nil
+            :props {"text" "\"Sign up"}
+            :attrs {}
+            :presets #{}
+            :style {}
+            :children {}
+            :event {"click" ":signup"}
+           }
+           "j" {
+            :type :space, :layout nil
+            :props {"width" "8"}
+            :attrs {}
+            :presets #{}
+            :style {}
+            :children {}
+           }
+           "r" {
+            :type :link, :layout nil
+            :props {"text" "\"Log in"}
+            :attrs {}
+            :presets #{}
+            :style {}
+            :children {}
+            :event {"click" ":login"}
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+  "vhTWiVbIA" {
+   :id "vhTWiVbIA", :name "offline", :mock-pointer "base", :width "300", :height "300", :sort-key "H"
+   :mocks {
+    "base" {
+     :id "base", :name "base"
+     :data {:icon "http://cdn.tiye.me/logo/respo.png"}
+    }
+   }
+   :markup {
+    :type :box, :layout :center
+    :props {}
+    :attrs {}
+    :presets #{:expand}
+    :style {}
+    :children {
+     "T" {
+      :type :image, :layout nil
+      :props {"src" "@:icon", "mode" ":contain", "height" "160", "width" "160"}
+      :attrs {}
+      :presets #{}
+      :style {}
+      :children {}
+     }
+     "b" {
+      :type :space, :layout nil
+      :props {"height" "40"}
+      :attrs {}
+      :presets #{}
+      :style {}
+      :children {}
+     }
+     "j" {
+      :type :text, :layout nil
+      :props {"value" "\"Offline"}
+      :attrs {}
+      :presets #{}
+      :style {"font-size" "24px", "font-weight" "100", "font-family" "Josefin Sans, Helvetica neue, Arial, sans-serif"}
+      :children {}
+     }
+    }
+   }
+  }
+ }
+ :settings {
+  :colors {}
+ }
+}
