@@ -348,6 +348,82 @@
     }
    }
   }
+  "ZJGLzqv4j" {
+   :id "ZJGLzqv4j", :name "book-note", :mock-pointer "base", :width 400, :height 400, :sort-key "/"
+   :mocks {
+    "base" {
+     :id "base", :name "base"
+     :data {}
+    }
+   }
+   :markup {
+    :type :box, :layout :row
+    :props {}
+    :attrs {}
+    :presets #{}
+    :style {}
+    :children {}
+   }
+  }
+  "ZSCLqPnIF" {
+   :id "ZSCLqPnIF", :name "book-card", :mock-pointer "base", :width "400", :height "200", :sort-key "7"
+   :mocks {
+    "base" {
+     :id "base", :name "base"
+     :data {:id "01", :name "天国之秋", :total-pages 400, :progress 10}
+    }
+   }
+   :markup {
+    :type :box, :layout :row-parted
+    :props {}
+    :attrs {}
+    :presets #{:base-padding}
+    :style {"border-bottom" "\"1px solid #eee"}
+    :children {
+     "T" {
+      :type :text, :layout nil
+      :props {"value" "@:name"}
+      :attrs {}
+      :presets #{}
+      :style {"font-size" "20px"}
+      :children {}
+     }
+     "j" {
+      :type :box, :layout nil
+      :props {}
+      :attrs {}
+      :presets #{}
+      :style {}
+      :children {
+       "T" {
+        :type :text, :layout nil
+        :props {"value" "@:progress"}
+        :attrs {}
+        :presets #{}
+        :style {"font-size" "16px"}
+        :children {}
+       }
+       "b" {
+        :type :text, :layout nil
+        :props {"value" "\"/"}
+        :attrs {}
+        :presets #{}
+        :style {"color" "#ddd"}
+        :children {}
+       }
+       "j" {
+        :type :text, :layout nil
+        :props {"value" "@:total-pages"}
+        :attrs {}
+        :presets #{}
+        :style {"color" "#ddd"}
+        :children {}
+       }
+      }
+     }
+    }
+   }
+  }
   "l2UpIJhsT" {
    :id "l2UpIJhsT", :name "status-tip", :mock-pointer "base", :width "80", :height "80", :sort-key "f"
    :mocks {
@@ -360,6 +436,81 @@
     :presets #{}
     :style {"width" "24px", "height" "24px", "background-color" "@", "border-radius" "50%", "position" "absolute", "left" "8px", "bottom" "16px"}
     :children {}
+   }
+  }
+  "oEcZ1yahy" {
+   :id "oEcZ1yahy", :name "book-overview", :mock-pointer "base", :width 400, :height 400, :sort-key "2"
+   :mocks {
+    "base" {
+     :id "base", :name "base"
+     :data {:id "01", :name "天国之秋", :total-pages 400, :progress 10}
+    }
+   }
+   :markup {
+    :type :box, :layout :column
+    :props {}
+    :attrs {}
+    :presets #{:base-padding}
+    :style {}
+    :children {
+     "T" {
+      :type :text, :layout nil
+      :props {"value" "@:name"}
+      :attrs {}
+      :presets #{}
+      :style {"font-size" "24px"}
+      :children {}
+     }
+     "b" {
+      :type :space, :layout nil
+      :props {"height" "40"}
+      :attrs {}
+      :presets #{}
+      :style {}
+      :children {}
+     }
+     "j" {
+      :type :box, :layout nil
+      :props {}
+      :attrs {}
+      :presets #{}
+      :style {}
+      :children {
+       "T" {
+        :type :text, :layout nil
+        :props {"value" "@:progress"}
+        :attrs {}
+        :presets #{}
+        :style {}
+        :children {}
+       }
+       "b" {
+        :type :box, :layout nil
+        :props {}
+        :attrs {}
+        :presets #{}
+        :style {}
+        :children {}
+       }
+       "j" {
+        :type :box, :layout nil
+        :props {}
+        :attrs {}
+        :presets #{}
+        :style {}
+        :children {}
+       }
+      }
+     }
+     "r" {
+      :type :box, :layout nil
+      :props {}
+      :attrs {}
+      :presets #{}
+      :style {}
+      :children {}
+     }
+    }
    }
   }
   "r7RWfkkhr" {
@@ -519,6 +670,8 @@
   }
  }
  :settings {
-  :colors {}
+  :colors {
+   "eFdeDVJJ2" {:id "eFdeDVJJ2", :name "minor", :color "#ddd", :group "font"}
+  }
  }
 }
