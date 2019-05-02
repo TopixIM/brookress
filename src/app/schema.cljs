@@ -4,7 +4,7 @@
 (def note {:id "", :content "", :time 0, :at-page 0})
 
 (def book
-  {:id "", :name "", :total-pages 0, :progress 0, :notes (do note {}), :sort-key ""})
+  {:id "", :name "", :total-pages 0, :progress 0, :notes (do note {}), :sort-key "", :time 0})
 
 (def router {:name nil, :title nil, :data {}, :router nil})
 

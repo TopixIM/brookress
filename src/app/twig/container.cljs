@@ -25,8 +25,9 @@
                 router
                 :data
                 (case (:name router)
-                  :home (:pages db)
+                  :home (:books db)
                   :profile (twig-members (:sessions db) (:users db))
+                  :book (get-in db [:books (:data router)])
                   {})),
        :count (count (:sessions db)),
        :color (color/randomColor)}
