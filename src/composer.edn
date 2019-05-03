@@ -127,27 +127,67 @@
    }
   }
   "JAnuFZzdk" {
-   :id "JAnuFZzdk", :name "workspace", :mock-pointer "base", :width 240, :height 60, :sort-key "c"
+   :id "JAnuFZzdk", :name "workspace", :mock-pointer "base", :width "320", :height "320", :sort-key "4"
    :mocks {
     "base" {
      :id "base", :name "base"
-     :data {}
+     :data {
+      "4FxkpphdL" {
+       :id "4FxkpphdL", :name "美国往事", :total-pages "200", :progress "22", :sort-key ""
+       :notes {}
+      }
+      "BJZAkwXHy" {
+       :id "BJZAkwXHy", :name "时间简史", :total-pages "100", :progress "23", :sort-key ""
+       :notes {}
+      }
+      "LRhYXQTQe" {
+       :id "LRhYXQTQe", :name "天国之秋", :total-pages "400", :progress "355", :sort-key ""
+       :notes {}
+      }
+     }
     }
    }
    :markup {
-    :type :box, :layout :row
+    :type :box, :layout :column
     :props {}
     :attrs {}
     :presets #{}
     :style {}
     :children {
      "T" {
-      :type :text, :layout nil
-      :props {"value" "\"This is workspace"}
+      :type :list, :layout nil
+      :props {"kind" ":map", "value" "@"}
       :attrs {}
-      :presets #{:base-padding}
+      :presets #{}
       :style {}
-      :children {}
+      :children {
+       "T" {
+        :type :template, :layout nil
+        :props {"value" "\"This is workspace", "name" "\"book-card", "data" "@:item"}
+        :attrs {}
+        :presets #{:base-padding}
+        :style {}
+        :children {}
+       }
+      }
+     }
+     "j" {
+      :type :box, :layout :center
+      :props {}
+      :attrs {}
+      :presets #{}
+      :style {"min-height" "\"80px"}
+      :children {
+       "T" {
+        :type :link, :layout nil
+        :props {"text" "\"Add book"}
+        :attrs {}
+        :presets #{}
+        :style {"font-family" "Josefin Sans, Helvetica neue, Arial, sans-serif"}
+        :children {}
+        :event {"click" ":router/add-book"}
+       }
+      }
      }
     }
    }
@@ -183,16 +223,44 @@
     "base" {
      :id "base", :name "base"
      :data {
-      :logged-in? false, :reel-length 2
-      :session {
-       :user-id nil, :id "6U0sZ9w2Z", :nickname nil
-       :router {:name "home", :data nil, :router nil}
-       :messages {
-        :lpdSih9Map {:id "lpdSih9Map", :text "No user named: chen"}
+      :local {
+       :login {:username "", :password ""}
+       :book-form {:name "书剑恩仇录", :total-pages "1200", :progress "20"}
+       :local {
+        :book-form {:name "美国", :total-pages "200", :progress "12"}
        }
       }
-      :local {:username "", :password ""}
-      :site {:cdn-url "http://cdn.tiye.me/cumulo-workflow/", :icon "http://cdn.tiye.me/logo/cumulo.png", :port 5021, :title "Cumulo", :upload-folder "tiye.me:repo/Cumulo/workflow/", :theme "#eeeeff", :server-folder "tiye.me:servers/workflow", :cdn-folder "tiye.me:cdn/cumulo-workflow", :storage-key "workflow-storage", :dev-ui "http://localhost:8100/main.css", :release-ui "http://cdn.tiye.me/favored-fonts/main.css", :storage-file "storage.edn"}
+      :site {:cdn-url "http://cdn.tiye.me/brookress/", :icon "http://cdn.tiye.me/logo/cumulo.png", :port 11017, :title "Brookress", :upload-folder "tiye.me:repo/TopixIM/brookress/", :theme "#eeeeff", :server-folder "tiye.me:servers/brookress", :cdn-folder "tiye.me:cdn/brookress", :storage-key "brookress", :dev-ui "http://localhost:8100/main-fonts.css", :release-ui "http://cdn.tiye.me/favored-fonts/main-fonts.css", :storage-file "storage.edn"}
+      :store {
+       :logged-in? true, :reel-length 15, :count 1, :color "#efa7e3"
+       :session {
+        :user-id "8ddCfbRu1", :id "-shw2KIPO", :nickname nil
+        :router {:name :home}
+        :messages {}
+       }
+       :user {:id "8ddCfbRu1", :name "chen", :nickname "chen", :avatar nil}
+       :router {
+        :name :home
+        :data {
+         "4FxkpphdL" {
+          :id "4FxkpphdL", :name "美国往事", :total-pages "200", :progress "22", :sort-key ""
+          :notes {}
+         }
+         "BJZAkwXHy" {
+          :id "BJZAkwXHy", :name "时间简史", :total-pages "100", :progress "23", :sort-key ""
+          :notes {}
+         }
+         "LRhYXQTQe" {
+          :id "LRhYXQTQe", :name "天国之秋", :total-pages "400", :progress "355", :sort-key ""
+          :notes {}
+         }
+         "Uf0Q5cdWF" {
+          :id "Uf0Q5cdWF", :name "书剑恩仇录", :total-pages "1200", :progress "20", :sort-key ""
+          :notes {}
+         }
+        }
+       }
+      }
      }
     }
    }
@@ -216,7 +284,7 @@
       :props {}
       :attrs {}
       :presets #{:fullscreen}
-      :style {}
+      :style {"font-family" "Hind, Helvatica, Arial, sans-serif"}
       :children {
        "T" {
         :type :template, :layout nil
@@ -243,7 +311,7 @@
          }
          "T" {
           :type :case, :layout nil
-          :props {"value" "@:store :router :name", "options" "~[:home :profile]"}
+          :props {"value" "@:store :router :name", "options" "~[:home :profile :add-book :book]"}
           :attrs {}
           :presets #{}
           :style {}
@@ -267,7 +335,7 @@
            }
            "j" {
             :type :template, :layout nil
-            :props {"name" "\"workspace", "data" "@:router"}
+            :props {"name" "\"workspace", "data" "@:store :router :data"}
             :attrs {}
             :presets #{}
             :style {}
@@ -281,7 +349,214 @@
             :style {}
             :children {}
            }
+           "v" {
+            :type :template, :layout nil
+            :props {"name" "\"book-form", "data" "@:local :book-form"}
+            :attrs {}
+            :presets #{}
+            :style {}
+            :children {}
+           }
+           "x" {
+            :type :template, :layout nil
+            :props {"name" "\"book-overview"}
+            :attrs {"book" "@:store :router :data", "state" "@:local :book"}
+            :presets #{}
+            :style {}
+            :children {}
+           }
           }
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+  "RKtQTcu1_" {
+   :id "RKtQTcu1_", :name "book-form", :mock-pointer "base", :width 400, :height "300", :sort-key "2"
+   :mocks {
+    "base" {
+     :id "base", :name "base"
+     :data {:name "Demo book", :total-pages 111, :progress 33}
+    }
+   }
+   :markup {
+    :type :box, :layout :column
+    :props {}
+    :attrs {}
+    :presets #{}
+    :style {"padding" "8px"}
+    :children {
+     "T" {
+      :type :box, :layout :row-middle
+      :props {}
+      :attrs {}
+      :presets #{}
+      :style {}
+      :children {
+       "T" {
+        :type :box, :layout nil
+        :props {}
+        :attrs {}
+        :presets #{}
+        :style {"width" "100px"}
+        :children {
+         "T" {
+          :type :text, :layout nil
+          :props {"value" "\"book name"}
+          :attrs {}
+          :presets #{}
+          :style {}
+          :children {}
+         }
+        }
+       }
+       "j" {
+        :type :input, :layout nil
+        :props {"value" "@:name"}
+        :attrs {"placeholder" "\"name.."}
+        :presets #{}
+        :style {}
+        :children {}
+        :event {"input" ":local/book-name"}
+       }
+      }
+     }
+     "b" {
+      :type :space, :layout nil
+      :props {"height" "8"}
+      :attrs {}
+      :presets #{}
+      :style {}
+      :children {}
+     }
+     "f" {
+      :type :box, :layout :row-middle
+      :props {}
+      :attrs {}
+      :presets #{}
+      :style {}
+      :children {
+       "T" {
+        :type :box, :layout nil
+        :props {}
+        :attrs {}
+        :presets #{}
+        :style {"width" "100px"}
+        :children {
+         "T" {
+          :type :text, :layout nil
+          :props {"value" "\"total pages"}
+          :attrs {}
+          :presets #{}
+          :style {}
+          :children {}
+         }
+        }
+       }
+       "j" {
+        :type :input, :layout nil
+        :props {"value" "@:total-pages"}
+        :attrs {"placeholder" "\"100..", "type" "\"number"}
+        :presets #{}
+        :style {}
+        :children {}
+        :event {"input" ":local/book-total-pages"}
+       }
+      }
+     }
+     "k" {
+      :type :space, :layout nil
+      :props {"height" "8"}
+      :attrs {}
+      :presets #{}
+      :style {}
+      :children {}
+     }
+     "l" {
+      :type :box, :layout :row-middle
+      :props {}
+      :attrs {}
+      :presets #{}
+      :style {}
+      :children {
+       "T" {
+        :type :box, :layout nil
+        :props {}
+        :attrs {}
+        :presets #{}
+        :style {"width" "100px"}
+        :children {
+         "T" {
+          :type :text, :layout nil
+          :props {"value" "\"progress"}
+          :attrs {}
+          :presets #{}
+          :style {}
+          :children {}
+         }
+        }
+       }
+       "j" {
+        :type :input, :layout nil
+        :props {"value" "@:progress"}
+        :attrs {"placeholder" "\"100..", "type" "\"number"}
+        :presets #{}
+        :style {}
+        :children {}
+        :event {"input" ":local/book-progress"}
+       }
+      }
+     }
+     "n" {
+      :type :space, :layout nil
+      :props {"height" "24"}
+      :attrs {}
+      :presets #{}
+      :style {}
+      :children {}
+     }
+     "r" {
+      :type :box, :layout :row-center
+      :props {}
+      :attrs {}
+      :presets #{}
+      :style {}
+      :children {
+       "j" {
+        :type :box, :layout nil
+        :props {}
+        :attrs {}
+        :presets #{}
+        :style {}
+        :children {
+         "T" {
+          :type :button, :layout nil
+          :props {"text" "\"Cancel"}
+          :attrs {}
+          :presets #{}
+          :style {}
+          :children {}
+          :event {"click" ":book/cancel"}
+         }
+         "j" {
+          :type :space, :layout nil
+          :props {"width" "8"}
+          :attrs {}
+          :presets #{}
+          :style {}
+          :children {}
+         }
+         "r" {
+          :type :button, :layout nil
+          :props {}
+          :attrs {}
+          :presets #{}
+          :style {}
+          :children {}
+          :event {"click" ":book/submit"}
          }
         }
        }
@@ -348,6 +623,66 @@
     }
    }
   }
+  "ZSCLqPnIF" {
+   :id "ZSCLqPnIF", :name "book-card", :mock-pointer "base", :width "400", :height "120", :sort-key "0"
+   :mocks {
+    "base" {
+     :id "base", :name "base"
+     :data {:id "01", :name "天国之秋", :total-pages 400, :progress 10}
+    }
+   }
+   :markup {
+    :type :box, :layout :row-parted
+    :props {"param" "@:id"}
+    :attrs {}
+    :presets #{:base-padding}
+    :style {"border-bottom" "\"1px solid #eee"}
+    :children {
+     "T" {
+      :type :text, :layout nil
+      :props {"value" "@:name"}
+      :attrs {}
+      :presets #{}
+      :style {"font-size" "20px"}
+      :children {}
+     }
+     "j" {
+      :type :box, :layout nil
+      :props {}
+      :attrs {}
+      :presets #{}
+      :style {}
+      :children {
+       "T" {
+        :type :text, :layout nil
+        :props {"value" "@:progress"}
+        :attrs {}
+        :presets #{}
+        :style {"font-size" "16px"}
+        :children {}
+       }
+       "b" {
+        :type :text, :layout nil
+        :props {"value" "\"/"}
+        :attrs {}
+        :presets #{}
+        :style {"color" "#ddd"}
+        :children {}
+       }
+       "j" {
+        :type :text, :layout nil
+        :props {"value" "@:total-pages"}
+        :attrs {}
+        :presets #{}
+        :style {"color" "#ddd"}
+        :children {}
+       }
+      }
+     }
+    }
+    :event {"click" ":router/view-book"}
+   }
+  }
   "l2UpIJhsT" {
    :id "l2UpIJhsT", :name "status-tip", :mock-pointer "base", :width "80", :height "80", :sort-key "f"
    :mocks {
@@ -360,6 +695,271 @@
     :presets #{}
     :style {"width" "24px", "height" "24px", "background-color" "@", "border-radius" "50%", "position" "absolute", "left" "8px", "bottom" "16px"}
     :children {}
+   }
+  }
+  "oEcZ1yahy" {
+   :id "oEcZ1yahy", :name "book-overview", :mock-pointer "m7xr27VXV", :width 400, :height "300", :sort-key "5"
+   :mocks {
+    "XSqz3LylA" {
+     :id "XSqz3LylA", :name "confirm"
+     :data {
+      :book {:id "01", :name "天国之秋", :total-pages 400, :progress 10}
+      :state {:show-editor? true, :progress 22, :show-remove? false}
+     }
+    }
+    "base" {
+     :id "base", :name "base"
+     :data {
+      :book {:id "01", :name "天国之秋", :total-pages 400, :progress 10}
+      :state {:show-editor? false, :progress 0, :show-remove? false}
+     }
+    }
+    "m7xr27VXV" {
+     :id "m7xr27VXV", :name "remove"
+     :data {
+      :book {:id "01", :name "天国之秋", :total-pages 400, :progress 10}
+      :state {:show-editor? false, :progress 0, :show-remove? true}
+     }
+    }
+   }
+   :markup {
+    :type :box, :layout :column
+    :props {}
+    :attrs {}
+    :presets #{:base-padding}
+    :style {"padding" "16px"}
+    :children {
+     "T" {
+      :type :box, :layout nil
+      :props {}
+      :attrs {}
+      :presets #{}
+      :style {}
+      :children {
+       "T" {
+        :type :text, :layout nil
+        :props {"value" "@:book :name"}
+        :attrs {}
+        :presets #{}
+        :style {"font-size" "24px"}
+        :children {}
+       }
+       "j" {
+        :type :space, :layout nil
+        :props {"width" "16"}
+        :attrs {}
+        :presets #{}
+        :style {}
+        :children {}
+       }
+       "r" {
+        :type :icon, :layout nil
+        :props {"name" "edit", "color" "hsl(200,80%,80%)", "param" "@:book"}
+        :attrs {}
+        :presets #{}
+        :style {}
+        :children {}
+        :event {"click" ":book/edit"}
+       }
+       "v" {
+        :type :space, :layout nil
+        :props {"width" "8"}
+        :attrs {}
+        :presets #{}
+        :style {}
+        :children {}
+       }
+       "x" {
+        :type :icon, :layout nil
+        :props {"color" "hsl(0,80%,80%)", "name" "x"}
+        :attrs {}
+        :presets #{}
+        :style {}
+        :children {}
+        :event {"click" ":book/remove"}
+       }
+      }
+     }
+     "b" {
+      :type :space, :layout nil
+      :props {"height" "40"}
+      :attrs {}
+      :presets #{}
+      :style {}
+      :children {}
+     }
+     "j" {
+      :type :box, :layout nil
+      :props {}
+      :attrs {}
+      :presets #{}
+      :style {}
+      :children {
+       "T" {
+        :type :text, :layout nil
+        :props {"value" "@:book :progress"}
+        :attrs {}
+        :presets #{}
+        :style {"font-size" "\"20px"}
+        :children {}
+       }
+       "b" {
+        :type :text, :layout nil
+        :props {"value" "\"/"}
+        :attrs {}
+        :presets #{}
+        :style {"color" "#ddd"}
+        :children {}
+       }
+       "j" {
+        :type :text, :layout nil
+        :props {"value" "@:book :total-pages"}
+        :attrs {}
+        :presets #{}
+        :style {"color" "#ddd"}
+        :children {}
+       }
+       "r" {
+        :type :space, :layout nil
+        :props {"width" "16"}
+        :attrs {}
+        :presets #{}
+        :style {}
+        :children {}
+       }
+       "v" {
+        :type :icon, :layout nil
+        :props {"name" "edit", "param" "@:book :progress"}
+        :attrs {}
+        :presets #{}
+        :style {}
+        :children {}
+        :event {"click" ":book/edit-progress"}
+       }
+      }
+     }
+     "r" {
+      :type :popup, :layout nil
+      :props {"visible" "@:state :show-editor?"}
+      :attrs {}
+      :presets #{}
+      :style {}
+      :children {
+       "T" {
+        :type :box, :layout :column
+        :props {}
+        :attrs {}
+        :presets #{}
+        :style {"padding" "\"40px 16px"}
+        :children {
+         "T" {
+          :type :box, :layout :row-middle
+          :props {}
+          :attrs {}
+          :presets #{}
+          :style {}
+          :children {
+           "T" {
+            :type :text, :layout nil
+            :props {"value" "\"Progress:"}
+            :attrs {}
+            :presets #{}
+            :style {}
+            :children {}
+           }
+           "b" {
+            :type :space, :layout nil
+            :props {"width" "16"}
+            :attrs {}
+            :presets #{}
+            :style {}
+            :children {}
+           }
+           "j" {
+            :type :input, :layout nil
+            :props {"value" "@:state :progress"}
+            :attrs {}
+            :presets #{}
+            :style {}
+            :children {}
+            :event {"input" ":local/book-progress-value"}
+           }
+          }
+         }
+         "b" {
+          :type :space, :layout nil
+          :props {"height" "16"}
+          :attrs {}
+          :presets #{}
+          :style {}
+          :children {}
+         }
+         "j" {
+          :type :box, :layout :row-parted
+          :props {}
+          :attrs {}
+          :presets #{}
+          :style {}
+          :children {
+           "T" {
+            :type :box, :layout nil
+            :props {}
+            :attrs {}
+            :presets #{}
+            :style {}
+            :children {}
+           }
+           "j" {
+            :type :button, :layout nil
+            :props {"param" "@:book :id"}
+            :attrs {}
+            :presets #{}
+            :style {}
+            :children {}
+            :event {"click" ":book/submit-progress"}
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+     "v" {
+      :type :popup, :layout nil
+      :props {"visible" "@:state :show-remove?"}
+      :attrs {}
+      :presets #{}
+      :style {}
+      :children {
+       "T" {
+        :type :box, :layout :row-parted
+        :props {}
+        :attrs {}
+        :presets #{}
+        :style {"padding" "40px 16px"}
+        :children {
+         "T" {
+          :type :text, :layout nil
+          :props {"value" "\"Sure to remove it?"}
+          :attrs {}
+          :presets #{}
+          :style {}
+          :children {}
+         }
+         "j" {
+          :type :button, :layout nil
+          :props {"text" "\"Remove it", "param" "@:book :id"}
+          :attrs {}
+          :presets #{}
+          :style {}
+          :children {}
+          :event {"click" ":book/confirm-remove"}
+         }
+        }
+       }
+      }
+     }
+    }
    }
   }
   "r7RWfkkhr" {
@@ -519,6 +1119,8 @@
   }
  }
  :settings {
-  :colors {}
+  :colors {
+   "eFdeDVJJ2" {:id "eFdeDVJJ2", :name "minor", :color "#ddd", :group "font"}
+  }
  }
 }
