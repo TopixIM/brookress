@@ -16,18 +16,19 @@
  (db session records)
  (let [logged-in? (some? (:user-id session))
        router (:router session)
-       base-data {:logged-in? logged-in?, :session session, :reel-length (count records)}]
+       base-data {:logged-in? logged-in?, :session session, :reel-length (count records)}
+       user (get-in db [:users (:user-id session)])]
    (merge
     base-data
     (if logged-in?
-      {:user (twig-user (get-in db [:users (:user-id session)])),
+      {:user (twig-user user),
        :router (assoc
                 router
                 :data
                 (case (:name router)
-                  :home (:books db)
+                  :home (:books user)
                   :profile (twig-members (:sessions db) (:users db))
-                  :book (get-in db [:books (:data router)])
+                  :book (get-in user [:books (:data router)])
                   {})),
        :count (count (:sessions db)),
        :color (color/randomColor)}

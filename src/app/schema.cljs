@@ -15,6 +15,7 @@
    :router (do router {:name :home, :data nil, :router nil}),
    :messages {}})
 
-(def user {:name nil, :id nil, :nickname nil, :avatar nil, :password nil})
+(def user
+  {:name nil, :id nil, :nickname nil, :avatar nil, :password nil, :books (do book {})})
 
-(def database {:sessions (do session {}), :users (do user {}), :books (do book {})})
+(def database {:sessions (do session {}), :users (do user {})})
