@@ -3895,7 +3895,7 @@
           :type :expr, :by "root", :at 1527867511986, :id "r1gxKOykeQ"
           :data {
            "T" {:type :leaf, :by "root", :at 1527867512819, :text ":icon", :id "r1gxKOykeQleaf"}
-           "j" {:type :leaf, :by "root", :at 1527867517723, :text "\"http://cdn.tiye.me/logo/cumulo.png", :id "B1SY_yJx7"}
+           "j" {:type :leaf, :by "B1y7Rc-Zz", :at 1556989155560, :text "\"http://cdn.tiye.me/logo/brookress.png", :id "B1SY_yJx7"}
           }
          }
          "v" {
@@ -4161,6 +4161,13 @@
              }
             }
            }
+          }
+         }
+         "yT" {
+          :type :expr, :by "B1y7Rc-Zz", :at 1556989538588, :id "S0y5mrdop"
+          :data {
+           "T" {:type :leaf, :by "B1y7Rc-Zz", :at 1556989541909, :text ":manifest", :id "S0y5mrdopleaf"}
+           "j" {:type :leaf, :by "B1y7Rc-Zz", :at 1556989545774, :text "\"manifest.json", :id "Te7wGF2zYw"}
           }
          }
         }
