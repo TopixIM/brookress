@@ -1,8 +1,20 @@
 
-(ns app.vm (:require [app.config :as config]))
+(ns app.vm (:require [app.config :as config] [respo.util.list :refer [map-val]]))
+
+(defn add-percent [book]
+  (assoc book :percent (str (.toFixed (* 100 (/ (:progress book) (:total-pages book)))) "%")))
 
 (defn get-view-model [store local-store]
-  {:local local-store, :site config/site, :store store})
+  {:local local-store,
+   :site config/site,
+   :store (update
+           store
+           :router
+           (fn [router]
+             (case (:name router)
+               :home
+                 (update router :data (fn [data] (->> data (map-val add-percent) (into {}))))
+               router)))})
 
 (defn on-action [d! op param options view-model]
   (when config/dev? (println "Action" op param (pr-str options)))
