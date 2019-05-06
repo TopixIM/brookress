@@ -232,6 +232,7 @@
     "JIaPJTv-k" {
      :id "JIaPJTv-k", :name "guest"
      :data {
+      :dev? true
       :local {:username "", :password ""}
       :site {:cdn-url "http://cdn.tiye.me/cumulo-workflow/", :icon "http://cdn.tiye.me/logo/cumulo.png", :port 5021, :title "Cumulo", :upload-folder "tiye.me:repo/Cumulo/workflow/", :theme "#eeeeff", :server-folder "tiye.me:servers/workflow", :cdn-folder "tiye.me:cdn/cumulo-workflow", :storage-key "workflow-storage", :dev-ui "http://localhost:8100/main.css", :release-ui "http://cdn.tiye.me/favored-fonts/main.css", :storage-file "storage.edn"}
       :store {
@@ -249,14 +250,15 @@
     "_qwdBq4js" {
      :id "_qwdBq4js", :name "offline"
      :data {
-      :store nil
+      :store nil, :dev? true
       :local {}
-      :site {:icon "http://cdn.tiye.me/logo/cumulo.png"}
+      :site {:icon "http://cdn.tiye.me/logo/brookress.png"}
      }
     }
     "base" {
      :id "base", :name "base"
      :data {
+      :dev? true
       :local {
        :login {:username "", :password ""}
        :book-form {:name "", :total-pages 0, :progress 0}
@@ -420,6 +422,14 @@
           }
          }
         }
+       }
+       "r" {
+        :type :template, :layout nil
+        :props {"name" "\"status-tip", "data" "@:store :color"}
+        :attrs {}
+        :presets #{}
+        :style {}
+        :children {}
        }
       }
      }
@@ -1149,7 +1159,7 @@
    :mocks {
     "base" {
      :id "base", :name "base"
-     :data {:icon "http://cdn.tiye.me/logo/respo.png"}
+     :data {:icon "http://cdn.tiye.me/logo/brookress.png"}
     }
    }
    :markup {
