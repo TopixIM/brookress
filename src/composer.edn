@@ -127,7 +127,7 @@
    }
   }
   "JAnuFZzdk" {
-   :id "JAnuFZzdk", :name "workspace", :mock-pointer "4FwUoiZaU", :width "320", :height "320", :sort-key "4"
+   :id "JAnuFZzdk", :name "workspace", :mock-pointer "base", :width "320", :height "320", :sort-key "4"
    :mocks {
     "4FwUoiZaU" {
      :id "4FwUoiZaU", :name "empty"
@@ -137,15 +137,19 @@
      :id "base", :name "base"
      :data {
       "4FxkpphdL" {
-       :id "4FxkpphdL", :name "美国往事", :total-pages "200", :progress "22", :sort-key ""
+       :id "4FxkpphdL", :name "美国往事", :total-pages "201", :progress "23", :sort-key "", :percent "11%", :time 1556864170095
        :notes {}
       }
       "BJZAkwXHy" {
-       :id "BJZAkwXHy", :name "时间简史", :total-pages "100", :progress "23", :sort-key ""
+       :id "BJZAkwXHy", :name "时间简史", :total-pages "100", :progress "36", :sort-key "", :percent "36%"
        :notes {}
       }
       "LRhYXQTQe" {
-       :id "LRhYXQTQe", :name "天国之秋", :total-pages "400", :progress "355", :sort-key ""
+       :id "LRhYXQTQe", :name "天国之秋", :total-pages "400", :progress "355", :sort-key "", :percent "89%"
+       :notes {}
+      }
+      "Uf0Q5cdWF" {
+       :id "Uf0Q5cdWF", :name "书剑恩仇录", :total-pages "1200", :progress "21", :sort-key "", :percent "2%"
        :notes {}
       }
      }
@@ -255,29 +259,26 @@
      :data {
       :local {
        :login {:username "", :password ""}
-       :book-form {:name "书剑恩仇录", :total-pages "1200", :progress "20"}
-       :local {
-        :book-form {:name "美国", :total-pages "200", :progress "12"}
-       }
+       :book-form {:name "", :total-pages 0, :progress 0}
+       :book {:show-confirm? false, :progress 0}
       }
-      :site {:cdn-url "http://cdn.tiye.me/brookress/", :icon "http://cdn.tiye.me/logo/cumulo.png", :port 11017, :title "Brookress", :upload-folder "tiye.me:repo/TopixIM/brookress/", :theme "#eeeeff", :server-folder "tiye.me:servers/brookress", :cdn-folder "tiye.me:cdn/brookress", :storage-key "brookress", :dev-ui "http://localhost:8100/main-fonts.css", :release-ui "http://cdn.tiye.me/favored-fonts/main-fonts.css", :storage-file "storage.edn"}
+      :site {:cdn-url "http://cdn.tiye.me/brookress/", :icon "http://cdn.tiye.me/logo/brookress.png", :port 11017, :title "Brookress", :upload-folder "tiye.me:repo/TopixIM/brookress/", :theme "#eeeeff", :server-folder "tiye.me:servers/brookress", :cdn-folder "tiye.me:cdn/brookress", :storage-key "brookress", :dev-ui "http://localhost:8100/main-fonts.css", :release-ui "http://cdn.tiye.me/favored-fonts/main-fonts.css", :storage-file "storage.edn"}
       :store {
-       :logged-in? true, :reel-length 15, :count 1, :color "#efa7e3"
+       :logged-in? true, :reel-length 2, :count 1, :color "#1616dd"
        :session {
-        :user-id "8ddCfbRu1", :id "-shw2KIPO", :nickname nil
-        :router {:name :home}
+        :user-id "8ddCfbRu1", :id "TCNepJplv", :nickname nil
+        :router {:name :home, :data nil, :router nil}
         :messages {}
        }
-       :user {:id "8ddCfbRu1", :name "chen", :nickname "chen", :avatar nil}
-       :router {
-        :name :home
-        :data {
+       :user {
+        :id "8ddCfbRu1", :name "chen", :nickname "chen", :avatar nil
+        :books {
          "4FxkpphdL" {
-          :id "4FxkpphdL", :name "美国往事", :total-pages "200", :progress "22", :sort-key ""
+          :id "4FxkpphdL", :name "美国往事", :total-pages "201", :progress "23", :sort-key "", :time 1556864170095
           :notes {}
          }
          "BJZAkwXHy" {
-          :id "BJZAkwXHy", :name "时间简史", :total-pages "100", :progress "23", :sort-key ""
+          :id "BJZAkwXHy", :name "时间简史", :total-pages "100", :progress "36", :sort-key ""
           :notes {}
          }
          "LRhYXQTQe" {
@@ -285,7 +286,28 @@
           :notes {}
          }
          "Uf0Q5cdWF" {
-          :id "Uf0Q5cdWF", :name "书剑恩仇录", :total-pages "1200", :progress "20", :sort-key ""
+          :id "Uf0Q5cdWF", :name "书剑恩仇录", :total-pages "1200", :progress "21", :sort-key ""
+          :notes {}
+         }
+        }
+       }
+       :router {
+        :name :home, :router nil
+        :data {
+         "4FxkpphdL" {
+          :id "4FxkpphdL", :name "美国往事", :total-pages "201", :progress "23", :sort-key "", :percent "11%", :time 1556864170095
+          :notes {}
+         }
+         "BJZAkwXHy" {
+          :id "BJZAkwXHy", :name "时间简史", :total-pages "100", :progress "36", :sort-key "", :percent "36%"
+          :notes {}
+         }
+         "LRhYXQTQe" {
+          :id "LRhYXQTQe", :name "天国之秋", :total-pages "400", :progress "355", :sort-key "", :percent "89%"
+          :notes {}
+         }
+         "Uf0Q5cdWF" {
+          :id "Uf0Q5cdWF", :name "书剑恩仇录", :total-pages "1200", :progress "21", :sort-key "", :percent "2%"
           :notes {}
          }
         }
@@ -611,15 +633,15 @@
     :type :box, :layout :row-parted
     :props {}
     :attrs {}
-    :presets #{:base-padding}
-    :style {"border-bottom" "1px solid #eee"}
+    :presets #{}
+    :style {"border-bottom" "1px solid #eee", "padding" "12px 12px"}
     :children {
      "T" {
       :type :link, :layout nil
       :props {"text" "@:app-name"}
       :attrs {}
       :presets #{}
-      :style {"font-family" "Josefin Sans, Helvetica neue, Arial, sans-serif"}
+      :style {"font-family" "Josefin Sans, Helvetica neue, Arial, sans-serif", "font-size" "18px", "text-decoration" "none"}
       :children {}
       :event {"click" ":home"}
      }
@@ -644,7 +666,7 @@
         :props {"text" "\"Profle"}
         :attrs {}
         :presets #{}
-        :style {"font-family" "Josefin Sans, Helvetica neue, Arial, sans-serif"}
+        :style {"font-family" "Josefin Sans, Helvetica neue, Arial, sans-serif", "text-decoration" "none"}
         :children {}
         :event {"click" ":profile"}
        }
@@ -658,23 +680,40 @@
    :mocks {
     "base" {
      :id "base", :name "base"
-     :data {:id "01", :name "天国之秋", :total-pages 400, :progress 10}
+     :data {:id "01", :name "天国之秋", :total-pages 400, :progress 10, :percent "10%"}
     }
    }
    :markup {
     :type :box, :layout :row-parted
     :props {"param" "@:id"}
     :attrs {}
-    :presets #{:base-padding}
-    :style {"border-bottom" "\"1px solid #eee"}
+    :presets #{}
+    :style {"border-bottom" "\"1px solid #eee", "padding" "12px 12px"}
     :children {
      "T" {
-      :type :text, :layout nil
-      :props {"value" "@:name"}
+      :type :box, :layout :row-middle
+      :props {}
       :attrs {}
       :presets #{}
-      :style {"font-size" "20px"}
-      :children {}
+      :style {}
+      :children {
+       "T" {
+        :type :text, :layout nil
+        :props {"value" "@:name"}
+        :attrs {}
+        :presets #{}
+        :style {"font-size" "18px"}
+        :children {}
+       }
+       "j" {
+        :type :text, :layout nil
+        :props {"value" "\"(~{data})", "data" "@:percent"}
+        :attrs {}
+        :presets #{}
+        :style {"color" "#ddd"}
+        :children {}
+       }
+      }
      }
      "j" {
       :type :box, :layout nil
@@ -704,7 +743,7 @@
         :props {"value" "@:total-pages"}
         :attrs {}
         :presets #{}
-        :style {"color" "#ddd"}
+        :style {"color" "#ddd", "font-size" "14px"}
         :children {}
        }
       }
@@ -728,7 +767,7 @@
    }
   }
   "oEcZ1yahy" {
-   :id "oEcZ1yahy", :name "book-overview", :mock-pointer "m7xr27VXV", :width 400, :height "300", :sort-key "5"
+   :id "oEcZ1yahy", :name "book-overview", :mock-pointer "base", :width 400, :height "300", :sort-key "5"
    :mocks {
     "XSqz3LylA" {
      :id "XSqz3LylA", :name "confirm"
