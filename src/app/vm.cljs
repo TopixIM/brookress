@@ -14,7 +14,8 @@
              (case (:name router)
                :home
                  (update router :data (fn [data] (->> data (map-val add-percent) (into {}))))
-               router)))})
+               router))),
+   :dev? config/dev?})
 
 (defn on-action [d! op param options view-model]
   (when config/dev? (println "Action" op param (pr-str options)))
