@@ -41,6 +41,8 @@
         (do
          (d! :book/edit-progress {:id param, :progress (get-in local [:book :progress])})
          (mutate! [:book :show-editor?] false))
+      :cancel-progress (mutate! [:book :show-editor?] false)
+      :cancel-remove (mutate! [:book :show-remove?] false)
       :book/confirm-remove
         (do
          (d! :book/remove param)

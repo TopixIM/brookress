@@ -777,7 +777,7 @@
    }
   }
   "oEcZ1yahy" {
-   :id "oEcZ1yahy", :name "book-overview", :mock-pointer "base", :width 400, :height "300", :sort-key "5"
+   :id "oEcZ1yahy", :name "book-overview", :mock-pointer "XSqz3LylA", :width 400, :height "300", :sort-key "5"
    :mocks {
     "XSqz3LylA" {
      :id "XSqz3LylA", :name "confirm"
@@ -1002,6 +1002,7 @@
         }
        }
       }
+      :event {"backdrop-click" "~:cancel-progress"}
      }
      "v" {
       :type :popup, :layout nil
@@ -1037,6 +1038,7 @@
         }
        }
       }
+      :event {"backdrop-click" "~:cancel-remove"}
      }
     }
    }
