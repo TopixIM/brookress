@@ -13,7 +13,8 @@
             [shadow.resource :refer [inline]]
             [cljs.reader :refer [read-string]]
             [cumulo-util.core :refer [id! unix-time!]]
-            [composer.core :refer [render-markup extract-templates]]))
+            [composer.core :refer [render-markup extract-templates]]
+            [app.vm :as vm]))
 
 (defcomp
  comp-offline
@@ -37,20 +38,30 @@
 
 (defcomp
  comp-container
- (states store view-model on-action)
+ (store states)
  (let [state (:data states)
        session (:session store)
        router (:router store)
        router-data (:data router)
-       templates (extract-templates (read-string (inline "composer.edn")))]
+       templates (extract-templates (read-string (inline "composer.edn")))
+       view-model (vm/get-view-model store)]
    (if (nil? store)
      (comp-offline)
      (div
       {:style (merge ui/global ui/fullscreen ui/column)}
       (render-markup
        (get templates "container")
-       {:data view-model, :templates templates, :level 1}
-       (fn [d! op param options] (on-action d! op param options view-model)))
+       {:data view-model,
+        :templates templates,
+        :level 1,
+        :template-name "container",
+        :state-path [],
+        :states states,
+        :state-fns (->> vm/states-manager
+                        (map (fn [[alias manager]] [alias (:init manager)]))
+                        (into {}))}
+       (fn [d! op context options]
+         (vm/on-action d! op (dissoc context :templates :state-fns) options view-model states)))
       (when dev? (comp-inspect "vm" view-model {:bottom 0, :left 0, :max-width "100%"}))
       (comp-messages
        (get-in store [:session :messages])

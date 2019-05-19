@@ -20,12 +20,6 @@
 
 (declare simulate-login!)
 
-(defonce *local-store
-  (atom
-   {:login {:username "", :password ""},
-    :book-form {:name "", :total-pages 0, :progress 0},
-    :book {:show-confirm? false, :progress 0}}))
-
 (defonce *states (atom {}))
 
 (defonce *store (atom nil))
@@ -40,10 +34,6 @@
   (when (and config/dev? (not= op :states)) (println "Dispatch" op op-data))
   (case op
     :states (reset! *states ((mutate op-data) @*states))
-    :local-mutate
-      (swap!
-       *local-store
-       (fn [store] (let [[path value] op-data] (assoc-in store path value))))
     :effect/connect (connect!)
     (ws-send! {:kind :op, :op op, :data op-data})))
 
@@ -66,10 +56,7 @@
 (def mount-target (.querySelector js/document ".app"))
 
 (defn render-app! [renderer]
-  (renderer
-   mount-target
-   (comp-container @*states @*store (vm/get-view-model @*store @*local-store) vm/on-action)
-   dispatch!))
+  (renderer mount-target (comp-container @*store @*states) dispatch!))
 
 (def ssr? (some? (.querySelector js/document "meta.respo-ssr")))
 
@@ -80,9 +67,9 @@
   (connect!)
   (add-watch *store :changes #(render-app! render!))
   (add-watch *states :changes #(render-app! render!))
-  (add-watch *local-store :changes #(render-app! render!))
   (on-page-touch #(if (nil? @*store) (connect!)))
-  (set! js/window.ednVm (fn [] (write-edn (vm/get-view-model @*store @*local-store))))
+  (set! js/window.ednVm (fn [] (write-edn (vm/get-view-model @*store))))
+  (set! js/window.ednStates (fn [] (write-edn @*states)))
   (println "App started!"))
 
 (defn reload! [] (clear-cache!) (render-app! render!) (println "Code updated."))
