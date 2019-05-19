@@ -28,23 +28,24 @@
 (def state-book-form
   {:init (fn [props state]
      (println "book form props" props)
-     (or state (:data props) {:name "", :total-pages 0, :progress 0})),
+     (or state props {:name "", :total-pages 0, :progress 0})),
    :update (fn [d! op context options state mutate!]
      (case op
        :local/book-name (mutate! (assoc state :name (:value options)))
        :local/book-total-pages (mutate! (assoc state :total-pages (:value options)))
        :local/book-progress (mutate! (assoc state :progress (:value options)))
-       :book/cancel (d! :router/change {:name :home})
+       :book/cancel (do (d! :router/change {:name :home}) (mutate! nil))
        :book/submit
          (let [book-data state]
            (if (:id book-data) (d! :book/merge book-data) (d! :book/add book-data))
+           (mutate! nil)
            (d! :router/change {:name :home}))
        (println "Unhandled op" op)))})
 
 (def state-book-overview
   {:init (fn [props state]
      (println "Overview props:" props)
-     (or state {:show-remove? false, :show-editor? false, :progress 0})),
+     (or state props {:show-remove? false, :show-editor? false, :progress 0})),
    :update (fn [d! op context options state mutate!]
      (case op
        :book/confirm-remove
@@ -61,7 +62,7 @@
           (d! :book/edit-progress {:id (:param options), :progress (:progress state)})
           (mutate! (assoc state :show-editor? false)))
        :book/remove (mutate! (assoc state :show-remove? true))
-       :book/edit (d! :router/change {:name :add-book})
+       :book/edit (d! :router/change {:name :edit-book, :data (:id (:param options))})
        :local/book-progress-value (mutate! (assoc state :progress (:value options)))
        (println "Unhandled op" op)))})
 
@@ -127,6 +128,8 @@
         mutate! (fn [x] (d! :states [state-path x]))
         this-state (get-in states (conj state-path :data))]
     (if (contains? states-manager template-name)
-      (let [action-handler (get-in states-manager [template-name :update])]
-        (action-handler d! op context options this-state mutate!))
+      (let [action-handler (get-in states-manager [template-name :update])
+            state-fn (get-in states-manager [template-name :init])
+            state (if (fn? state-fn) (state-fn (:data context) this-state) this-state)]
+        (action-handler d! op context options state mutate!))
       (println "Unhandled template:" template-name))))

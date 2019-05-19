@@ -365,7 +365,7 @@
          }
          "T" {
           :type :case, :layout nil
-          :props {"value" "@:store :router :name", "options" "~[:home :profile :add-book :book]"}
+          :props {"value" "@:store :router :name", "options" "~[:home :profile :add-book :edit-book :book]"}
           :attrs {}
           :presets #{}
           :style {}
@@ -379,7 +379,7 @@
             :children {
              "T" {
               :type :text, :layout nil
-              :props {"value" "\"Nothing selected ~{data}"}
+              :props {"value" "\"Nothing selected ~{data}", "data" "@:store :router"}
               :attrs {}
               :presets #{}
               :style {}
@@ -405,7 +405,15 @@
            }
            "v" {
             :type :template, :layout nil
-            :props {"name" "\"book-form", "data" "@:local :book-form", "state-key" ":book-form"}
+            :props {"name" "\"book-form", "state-key" ":book-form", "data" "~nil"}
+            :attrs {}
+            :presets #{}
+            :style {}
+            :children {}
+           }
+           "w" {
+            :type :template, :layout nil
+            :props {"name" "\"book-form", "data" "@:store :router :data", "state-key" ":book-form"}
             :attrs {}
             :presets #{}
             :style {}
