@@ -17,26 +17,6 @@
             [app.vm :as vm]))
 
 (defcomp
- comp-offline
- ()
- (div
-  {:style (merge
-           ui/global
-           ui/fullscreen
-           ui/column-dispersive
-           {:background-color (:theme config/site)})}
-  (div {:style {:height 0}})
-  (div
-   {:style {:background-image (str "url(" (:icon config/site) ")"),
-            :width 128,
-            :height 128,
-            :background-size :contain}})
-  (div
-   {:style {:cursor :pointer, :line-height "32px"},
-    :on-click (action-> :effect/connect nil)}
-   (<> "No connection..." {:font-family ui/font-fancy, :font-size 24}))))
-
-(defcomp
  comp-container
  (store states)
  (let [state (:data states)
@@ -45,43 +25,24 @@
        router-data (:data router)
        templates (extract-templates (read-string (inline "composer.edn")))
        view-model (vm/get-view-model store states)]
-   (if (nil? store)
-     (comp-offline)
-     (div
-      {:style (merge ui/global ui/fullscreen ui/column)}
-      (render-markup
-       (get templates "container")
-       {:data view-model,
-        :templates templates,
-        :level 1,
-        :template-name "container",
-        :state-path [],
-        :states states,
-        :state-fns (->> vm/states-manager
-                        (map (fn [[alias manager]] [alias (:init manager)]))
-                        (into {}))}
-       (fn [d! op context options]
-         (vm/on-action d! op (dissoc context :templates :state-fns) options view-model states)))
-      (when dev? (comp-inspect "vm" view-model {:bottom 0, :left 0, :max-width "100%"}))
-      (comp-messages
-       (get-in store [:session :messages])
-       {}
-       (fn [info d! m!] (d! :session/remove-message info)))
-      (when dev? (comp-reel (:reel-length store) {}))))))
-
-(defcomp
- comp-status-color
- (color)
- (div
-  {:style (let [size 24]
-     {:width size,
-      :height size,
-      :position :absolute,
-      :bottom 60,
-      :left 8,
-      :background-color color,
-      :border-radius "50%",
-      :opacity 0.6,
-      :pointer-events :none})}))
-
-(def style-body {:padding "8px 16px"})
+   (div
+    {:style (merge ui/global ui/fullscreen ui/column)}
+    (render-markup
+     (get templates "container")
+     {:data view-model,
+      :templates templates,
+      :level 1,
+      :template-name "container",
+      :state-path [],
+      :states states,
+      :state-fns (->> vm/states-manager
+                      (map (fn [[alias manager]] [alias (:init manager)]))
+                      (into {}))}
+     (fn [d! op context options]
+       (vm/on-action d! op (dissoc context :templates :state-fns) options view-model states)))
+    (when dev? (comp-inspect "vm" view-model {:bottom 0, :left 0, :max-width "100%"}))
+    (comp-messages
+     (get-in store [:session :messages])
+     {}
+     (fn [info d! m!] (d! :session/remove-message info)))
+    (when dev? (comp-reel (:reel-length store) {})))))

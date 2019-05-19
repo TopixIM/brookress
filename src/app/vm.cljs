@@ -6,14 +6,15 @@
 
 (defn get-view-model [store states]
   {:site config/site,
-   :store (update
-           store
-           :router
-           (fn [router]
-             (case (:name router)
-               :home
-                 (update router :data (fn [data] (->> data (map-val add-percent) (into {}))))
-               router))),
+   :store (if (nil? store)
+     nil
+     (update
+      store
+      :router
+      (fn [router]
+        (case (:name router)
+          :home (update router :data (fn [data] (->> data (map-val add-percent) (into {}))))
+          router)))),
    :dev? config/dev?,
    :states states})
 
