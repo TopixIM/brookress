@@ -219,7 +219,7 @@
         :presets #{}
         :style {"font-family" "Josefin Sans, Helvetica neue, Arial, sans-serif"}
         :children {}
-        :event {"click" ":router/add-book"}
+        :event {"click" ":add-book"}
        }
       }
      }
@@ -493,7 +493,7 @@
         :presets #{}
         :style {}
         :children {}
-        :event {"input" ":local/book-name"}
+        :event {"input" ":name"}
        }
       }
      }
@@ -536,7 +536,7 @@
         :presets #{}
         :style {}
         :children {}
-        :event {"input" ":local/book-total-pages"}
+        :event {"input" ":total-pages"}
        }
       }
      }
@@ -579,7 +579,7 @@
         :presets #{}
         :style {}
         :children {}
-        :event {"input" ":local/book-progress"}
+        :event {"input" ":progress"}
        }
       }
      }
@@ -612,7 +612,7 @@
           :presets #{}
           :style {}
           :children {}
-          :event {"click" ":book/cancel"}
+          :event {"click" ":cancel"}
          }
          "j" {
           :type :space, :layout nil
@@ -629,7 +629,7 @@
           :presets #{}
           :style {}
           :children {}
-          :event {"click" ":book/submit"}
+          :event {"click" ":submit"}
          }
         }
        }
@@ -770,7 +770,7 @@
       }
      }
     }
-    :event {"click" ":router/view-book"}
+    :event {"click" ":view-book"}
    }
   }
   "l2UpIJhsT" {
@@ -855,7 +855,7 @@
         :presets #{}
         :style {}
         :children {}
-        :event {"click" ":book/edit"}
+        :event {"click" ":open-editor"}
        }
        "v" {
         :type :space, :layout nil
@@ -872,7 +872,7 @@
         :presets #{}
         :style {}
         :children {}
-        :event {"click" ":book/remove"}
+        :event {"click" ":show-remove"}
        }
       }
      }
@@ -930,7 +930,7 @@
         :presets #{}
         :style {}
         :children {}
-        :event {"click" ":book/edit-progress"}
+        :event {"click" ":show-progress-editor"}
        }
       }
      }
@@ -978,7 +978,7 @@
             :presets #{}
             :style {}
             :children {}
-            :event {"input" ":local/book-progress-value"}
+            :event {"input" ":progress"}
            }
           }
          }
@@ -1012,7 +1012,7 @@
             :presets #{}
             :style {}
             :children {}
-            :event {"click" ":book/submit-progress"}
+            :event {"click" ":submit-progress"}
            }
           }
          }
@@ -1050,7 +1050,7 @@
           :presets #{}
           :style {}
           :children {}
-          :event {"click" ":book/confirm-remove"}
+          :event {"click" ":confirm-remove"}
          }
         }
        }
@@ -1089,7 +1089,7 @@
         :presets #{}
         :style {}
         :children {}
-        :event {"input" ":local/username"}
+        :event {"input" ":username"}
        }
        "j" {
         :type :space, :layout nil
@@ -1106,7 +1106,7 @@
         :presets #{}
         :style {}
         :children {}
-        :event {"input" ":local/password"}
+        :event {"input" ":password"}
        }
        "v" {
         :type :space, :layout nil
@@ -1195,6 +1195,7 @@
       :presets #{}
       :style {}
       :children {}
+      :event {"click" ":reconnect"}
      }
      "b" {
       :type :space, :layout nil

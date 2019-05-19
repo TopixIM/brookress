@@ -22,7 +22,7 @@
   {:init (fn [props state] state),
    :update (fn [d! op context options state m!]
      (case op
-       :router/view-book (d! :router/change {:name :book, :data (:param options)})
+       :view-book (d! :router/change {:name :book, :data (:param options)})
        (println "Unhandled op" op)))})
 
 (def state-book-form
@@ -31,11 +31,11 @@
      (or state props {:name "", :total-pages 0, :progress 0})),
    :update (fn [d! op context options state mutate!]
      (case op
-       :local/book-name (mutate! (assoc state :name (:value options)))
-       :local/book-total-pages (mutate! (assoc state :total-pages (:value options)))
-       :local/book-progress (mutate! (assoc state :progress (:value options)))
-       :book/cancel (do (d! :router/change {:name :home}) (mutate! nil))
-       :book/submit
+       :name (mutate! (assoc state :name (:value options)))
+       :total-pages (mutate! (assoc state :total-pages (:value options)))
+       :progress (mutate! (assoc state :progress (:value options)))
+       :cancel (do (d! :router/change {:name :home}) (mutate! nil))
+       :submit
          (let [book-data state]
            (if (:id book-data) (d! :book/merge book-data) (d! :book/add book-data))
            (mutate! nil)
@@ -44,26 +44,25 @@
 
 (def state-book-overview
   {:init (fn [props state]
-     (println "Overview props:" props)
      (or state props {:show-remove? false, :show-editor? false, :progress 0})),
    :update (fn [d! op context options state mutate!]
      (case op
-       :book/confirm-remove
+       :open-editor (d! :router/change {:name :edit-book, :data (:id (:param options))})
+       :show-progress-editor
+         (mutate! (assoc state :progress (:param options) :show-editor? true))
+       :show-remove (mutate! (assoc state :show-remove? true))
+       :progress (mutate! (assoc state :progress (:value options)))
+       :submit-progress
+         (do
+          (d! :book/edit-progress {:id (:param options), :progress (:progress state)})
+          (mutate! (assoc state :show-editor? false)))
+       :confirm-remove
          (do
           (d! :book/remove (:param options))
           (mutate! (assoc state :show-remove? false))
           (d! :router/change {:name :home}))
        :cancel-remove (mutate! (assoc state :show-remove? false))
        :cancel-progress (mutate! (assoc state :show-editor? false))
-       :book/edit-progress
-         (mutate! (assoc state :progress (:param options) :show-editor? true))
-       :book/submit-progress
-         (do
-          (d! :book/edit-progress {:id (:param options), :progress (:progress state)})
-          (mutate! (assoc state :show-editor? false)))
-       :book/remove (mutate! (assoc state :show-remove? true))
-       :book/edit (d! :router/change {:name :edit-book, :data (:id (:param options))})
-       :local/book-progress-value (mutate! (assoc state :progress (:value options)))
        (println "Unhandled op" op)))})
 
 (def state-header
@@ -78,8 +77,8 @@
   {:init (fn [props state] (or state {:username "", :password ""})),
    :update (fn [d! op context options state mutate!]
      (case op
-       :local/username (mutate! (assoc state :username (:value options)))
-       :local/password (mutate! (assoc state :password (:value options)))
+       :username (mutate! (assoc state :username (:value options)))
+       :password (mutate! (assoc state :password (:value options)))
        :signup
          (let [login-pair [(:username state) (:password state)]]
            (d! :user/sign-up login-pair)
@@ -92,7 +91,8 @@
 
 (def state-offline
   {:init (fn [props state] state),
-   :update (fn [d! op context options state m!] (println "not handled op" op))})
+   :update (fn [d! op context options state m!]
+     (case op :reconnect (d! :effect/connect nil) (println "not handled op" op)))})
 
 (def state-profile
   {:init (fn [props state] state),
@@ -106,7 +106,7 @@
   {:init (fn [props state] state),
    :update (fn [d! op context options state mutate!]
      (case op
-       :router/add-book
+       :add-book
          (do (mutate! [:book-form] {}) (d! :router/change {:name :add-book, :data nil}))
        (println "Unhandled op" op)))})
 
