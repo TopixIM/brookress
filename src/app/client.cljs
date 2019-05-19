@@ -2,7 +2,7 @@
 (ns app.client
   (:require [respo.core :refer [render! clear-cache! realize-ssr!]]
             [respo.cursor :refer [mutate]]
-            [app.comp.container :refer [comp-container]]
+            [app.container :refer [comp-container]]
             [cljs.reader :refer [read-string]]
             [app.schema :as schema]
             [app.config :as config]

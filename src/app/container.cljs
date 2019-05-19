@@ -1,13 +1,10 @@
 
-(ns app.comp.container
+(ns app.container
   (:require [hsl.core :refer [hsl]]
             [respo-ui.core :as ui]
             [respo.core :refer [defcomp <> div span action-> cursor-> button]]
             [respo.comp.inspect :refer [comp-inspect]]
             [respo.comp.space :refer [=<]]
-            [app.comp.navigation :refer [comp-navigation]]
-            [app.comp.profile :refer [comp-profile]]
-            [app.comp.login :refer [comp-login]]
             [respo-message.comp.messages :refer [comp-messages]]
             [cumulo-reel.comp.reel :refer [comp-reel]]
             [app.config :refer [dev?]]
