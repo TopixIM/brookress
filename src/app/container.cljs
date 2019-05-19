@@ -44,7 +44,7 @@
        router (:router store)
        router-data (:data router)
        templates (extract-templates (read-string (inline "composer.edn")))
-       view-model (vm/get-view-model store)]
+       view-model (vm/get-view-model store states)]
    (if (nil? store)
      (comp-offline)
      (div

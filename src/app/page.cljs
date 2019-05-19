@@ -26,7 +26,7 @@
      :inline-styles []})))
 
 (defn prod-page []
-  (let [html-content (make-string (comp-container {} nil nil nil))
+  (let [html-content (make-string (comp-container {} nil))
         assets (read-string (slurp "dist/assets.edn"))
         cdn (if config/cdn? (:cdn-url config/site) "")
         prefix-cdn #(str cdn %)]

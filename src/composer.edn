@@ -357,7 +357,7 @@
         :children {
          "D" {
           :type :template, :layout nil
-          :props {"name" "\"login", "data" "@:local"}
+          :props {"name" "\"login", "data" "@:local", "state-key" ":login"}
           :attrs {}
           :presets #{}
           :style {}
@@ -389,7 +389,7 @@
            }
            "j" {
             :type :template, :layout nil
-            :props {"name" "\"workspace", "data" "@:store :router :data"}
+            :props {"name" "\"workspace", "data" "@:store :router :data", "state-key" ":workspace"}
             :attrs {}
             :presets #{}
             :style {}
@@ -397,7 +397,7 @@
            }
            "r" {
             :type :template, :layout nil
-            :props {"name" "\"profile"}
+            :props {"name" "\"profile", "state-key" ":profile"}
             :attrs {"user" "@:store :user", "members" "@:store :router :data"}
             :presets #{}
             :style {}
@@ -405,7 +405,7 @@
            }
            "v" {
             :type :template, :layout nil
-            :props {"name" "\"book-form", "data" "@:local :book-form"}
+            :props {"name" "\"book-form", "data" "@:local :book-form", "state-key" ":book-form"}
             :attrs {}
             :presets #{}
             :style {}
@@ -413,7 +413,7 @@
            }
            "x" {
             :type :template, :layout nil
-            :props {"name" "\"book-overview"}
+            :props {"name" "\"book-overview", "state-key" ":book-overview"}
             :attrs {"book" "@:store :router :data", "state" "@:local :book"}
             :presets #{}
             :style {}
@@ -440,8 +440,11 @@
    :id "RKtQTcu1_", :name "book-form", :mock-pointer "base", :width 400, :height "300", :sort-key "2"
    :mocks {
     "base" {
-     :id "base", :name "base"
+     :id "base", :name "base", :template-id "RKtQTcu1_", :mock-id "base"
      :data {:name "Demo book", :total-pages 111, :progress 33}
+     :state {
+      :data {:show-editor? false, :show-remove? false, :progress 5}
+     }
     }
    }
    :markup {
@@ -777,27 +780,33 @@
    }
   }
   "oEcZ1yahy" {
-   :id "oEcZ1yahy", :name "book-overview", :mock-pointer "XSqz3LylA", :width 400, :height "300", :sort-key "5"
+   :id "oEcZ1yahy", :name "book-overview", :mock-pointer "base", :width 400, :height "300", :sort-key "5"
    :mocks {
     "XSqz3LylA" {
-     :id "XSqz3LylA", :name "confirm"
+     :id "XSqz3LylA", :name "edit", :template-id "oEcZ1yahy", :mock-id "XSqz3LylA"
      :data {
       :book {:id "01", :name "天国之秋", :total-pages 400, :progress 10}
-      :state {:show-editor? true, :progress 22, :show-remove? false}
+     }
+     :state {
+      :data {:show-editor? true, :progress 10}
      }
     }
     "base" {
-     :id "base", :name "base"
+     :id "base", :name "base", :template-id "oEcZ1yahy", :mock-id "base"
      :data {
       :book {:id "01", :name "天国之秋", :total-pages 400, :progress 10}
-      :state {:show-editor? false, :progress 0, :show-remove? false}
+     }
+     :state {
+      :data {}
      }
     }
     "m7xr27VXV" {
-     :id "m7xr27VXV", :name "remove"
+     :id "m7xr27VXV", :name "remove", :template-id "oEcZ1yahy", :mock-id "m7xr27VXV"
      :data {
       :book {:id "01", :name "天国之秋", :total-pages 400, :progress 10}
-      :state {:show-editor? false, :progress 0, :show-remove? true}
+     }
+     :state {
+      :data {:show-remove? true}
      }
     }
    }
@@ -919,7 +928,7 @@
      }
      "r" {
       :type :popup, :layout nil
-      :props {"visible" "@:state :show-editor?"}
+      :props {"visible" "#:show-editor?"}
       :attrs {}
       :presets #{}
       :style {}
@@ -956,8 +965,8 @@
            }
            "j" {
             :type :input, :layout nil
-            :props {"value" "@:state :progress"}
-            :attrs {}
+            :props {"value" "#:progress"}
+            :attrs {"type" "\"number"}
             :presets #{}
             :style {}
             :children {}
@@ -1006,7 +1015,7 @@
      }
      "v" {
       :type :popup, :layout nil
-      :props {"visible" "@:state :show-remove?"}
+      :props {"visible" "#:show-remove?"}
       :attrs {}
       :presets #{}
       :style {}

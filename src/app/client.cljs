@@ -10,7 +10,6 @@
             [recollect.patch :refer [patch-twig]]
             [cumulo-util.core :refer [on-page-touch]]
             ["url-parse" :as url-parse]
-            [app.vm :as vm]
             [favored-edn.core :refer [write-edn]])
   (:require-macros [clojure.core.strint :refer [<<]]))
 
@@ -68,7 +67,7 @@
   (add-watch *store :changes #(render-app! render!))
   (add-watch *states :changes #(render-app! render!))
   (on-page-touch #(if (nil? @*store) (connect!)))
-  (set! js/window.ednVm (fn [] (write-edn (vm/get-view-model @*store))))
+  (set! js/window.ednStore (fn [] (write-edn @*store)))
   (set! js/window.ednStates (fn [] (write-edn @*states)))
   (println "App started!"))
 

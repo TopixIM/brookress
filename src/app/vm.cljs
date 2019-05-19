@@ -4,7 +4,7 @@
 (defn add-percent [book]
   (assoc book :percent (str (.toFixed (* 100 (/ (:progress book) (:total-pages book)))) "%")))
 
-(defn get-view-model [store]
+(defn get-view-model [store states]
   {:site config/site,
    :store (update
            store
@@ -14,7 +14,8 @@
                :home
                  (update router :data (fn [data] (->> data (map-val add-percent) (into {}))))
                router))),
-   :dev? config/dev?})
+   :dev? config/dev?,
+   :states states})
 
 (def state-book-card
   {:init (fn [props state] state),
@@ -53,10 +54,10 @@
        :cancel-remove (mutate! (assoc state :show-remove? false))
        :cancel-progress (mutate! (assoc state :show-editor? false))
        :book/edit-progress
-         (mutate! (assoc state :progress (:param state) :show-editor? false))
+         (mutate! (assoc state :progress (:param options) :show-editor? true))
        :book/submit-progress
          (do
-          (d! :book/edit-progress {:id (:param options), :progress (:progres state)})
+          (d! :book/edit-progress {:id (:param options), :progress (:progress state)})
           (mutate! (assoc state :show-editor? false)))
        :book/remove (mutate! (assoc state :show-remove? true))
        :book/edit (d! :router/change {:name :add-book})
