@@ -32,6 +32,7 @@
                   :home (:books user)
                   :profile (twig-members (:sessions db) (:users db))
                   :book (get-in user [:books (:data router)])
+                  :edit-book (get-in user [:books (:data router)])
                   {})),
        :count (count (:sessions db))}
       nil))))

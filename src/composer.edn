@@ -219,7 +219,7 @@
         :presets #{}
         :style {"font-family" "Josefin Sans, Helvetica neue, Arial, sans-serif"}
         :children {}
-        :event {"click" ":router/add-book"}
+        :event {"click" ":add-book"}
        }
       }
      }
@@ -357,7 +357,7 @@
         :children {
          "D" {
           :type :template, :layout nil
-          :props {"name" "\"login", "data" "@:local"}
+          :props {"name" "\"login", "data" "@:local", "state-key" ":login"}
           :attrs {}
           :presets #{}
           :style {}
@@ -365,7 +365,7 @@
          }
          "T" {
           :type :case, :layout nil
-          :props {"value" "@:store :router :name", "options" "~[:home :profile :add-book :book]"}
+          :props {"value" "@:store :router :name", "options" "~[:home :profile :add-book :edit-book :book]"}
           :attrs {}
           :presets #{}
           :style {}
@@ -379,7 +379,7 @@
             :children {
              "T" {
               :type :text, :layout nil
-              :props {"value" "\"Nothing selected ~{data}"}
+              :props {"value" "\"Nothing selected ~{data}", "data" "@:store :router"}
               :attrs {}
               :presets #{}
               :style {}
@@ -389,7 +389,7 @@
            }
            "j" {
             :type :template, :layout nil
-            :props {"name" "\"workspace", "data" "@:store :router :data"}
+            :props {"name" "\"workspace", "data" "@:store :router :data", "state-key" ":workspace"}
             :attrs {}
             :presets #{}
             :style {}
@@ -397,7 +397,7 @@
            }
            "r" {
             :type :template, :layout nil
-            :props {"name" "\"profile"}
+            :props {"name" "\"profile", "state-key" ":profile"}
             :attrs {"user" "@:store :user", "members" "@:store :router :data"}
             :presets #{}
             :style {}
@@ -405,7 +405,15 @@
            }
            "v" {
             :type :template, :layout nil
-            :props {"name" "\"book-form", "data" "@:local :book-form"}
+            :props {"name" "\"book-form", "state-key" ":book-form", "data" "~nil"}
+            :attrs {}
+            :presets #{}
+            :style {}
+            :children {}
+           }
+           "w" {
+            :type :template, :layout nil
+            :props {"name" "\"book-form", "data" "@:store :router :data", "state-key" ":book-form"}
             :attrs {}
             :presets #{}
             :style {}
@@ -413,7 +421,7 @@
            }
            "x" {
             :type :template, :layout nil
-            :props {"name" "\"book-overview"}
+            :props {"name" "\"book-overview", "state-key" ":book-overview"}
             :attrs {"book" "@:store :router :data", "state" "@:local :book"}
             :presets #{}
             :style {}
@@ -440,8 +448,11 @@
    :id "RKtQTcu1_", :name "book-form", :mock-pointer "base", :width 400, :height "300", :sort-key "2"
    :mocks {
     "base" {
-     :id "base", :name "base"
+     :id "base", :name "base", :template-id "RKtQTcu1_", :mock-id "base"
      :data {:name "Demo book", :total-pages 111, :progress 33}
+     :state {
+      :data {:show-editor? false, :show-remove? false, :progress 5}
+     }
     }
    }
    :markup {
@@ -482,7 +493,7 @@
         :presets #{}
         :style {}
         :children {}
-        :event {"input" ":local/book-name"}
+        :event {"input" ":name"}
        }
       }
      }
@@ -525,7 +536,7 @@
         :presets #{}
         :style {}
         :children {}
-        :event {"input" ":local/book-total-pages"}
+        :event {"input" ":total-pages"}
        }
       }
      }
@@ -568,7 +579,7 @@
         :presets #{}
         :style {}
         :children {}
-        :event {"input" ":local/book-progress"}
+        :event {"input" ":progress"}
        }
       }
      }
@@ -601,7 +612,7 @@
           :presets #{}
           :style {}
           :children {}
-          :event {"click" ":book/cancel"}
+          :event {"click" ":cancel"}
          }
          "j" {
           :type :space, :layout nil
@@ -618,7 +629,7 @@
           :presets #{}
           :style {}
           :children {}
-          :event {"click" ":book/submit"}
+          :event {"click" ":submit"}
          }
         }
        }
@@ -759,7 +770,7 @@
       }
      }
     }
-    :event {"click" ":router/view-book"}
+    :event {"click" ":view-book"}
    }
   }
   "l2UpIJhsT" {
@@ -777,27 +788,33 @@
    }
   }
   "oEcZ1yahy" {
-   :id "oEcZ1yahy", :name "book-overview", :mock-pointer "XSqz3LylA", :width 400, :height "300", :sort-key "5"
+   :id "oEcZ1yahy", :name "book-overview", :mock-pointer "base", :width 400, :height "300", :sort-key "5"
    :mocks {
     "XSqz3LylA" {
-     :id "XSqz3LylA", :name "confirm"
+     :id "XSqz3LylA", :name "edit", :template-id "oEcZ1yahy", :mock-id "XSqz3LylA"
      :data {
       :book {:id "01", :name "天国之秋", :total-pages 400, :progress 10}
-      :state {:show-editor? true, :progress 22, :show-remove? false}
+     }
+     :state {
+      :data {:show-editor? true, :progress 10}
      }
     }
     "base" {
-     :id "base", :name "base"
+     :id "base", :name "base", :template-id "oEcZ1yahy", :mock-id "base"
      :data {
       :book {:id "01", :name "天国之秋", :total-pages 400, :progress 10}
-      :state {:show-editor? false, :progress 0, :show-remove? false}
+     }
+     :state {
+      :data {}
      }
     }
     "m7xr27VXV" {
-     :id "m7xr27VXV", :name "remove"
+     :id "m7xr27VXV", :name "remove", :template-id "oEcZ1yahy", :mock-id "m7xr27VXV"
      :data {
       :book {:id "01", :name "天国之秋", :total-pages 400, :progress 10}
-      :state {:show-editor? false, :progress 0, :show-remove? true}
+     }
+     :state {
+      :data {:show-remove? true}
      }
     }
    }
@@ -838,7 +855,7 @@
         :presets #{}
         :style {}
         :children {}
-        :event {"click" ":book/edit"}
+        :event {"click" ":open-editor"}
        }
        "v" {
         :type :space, :layout nil
@@ -855,7 +872,7 @@
         :presets #{}
         :style {}
         :children {}
-        :event {"click" ":book/remove"}
+        :event {"click" ":show-remove"}
        }
       }
      }
@@ -913,13 +930,13 @@
         :presets #{}
         :style {}
         :children {}
-        :event {"click" ":book/edit-progress"}
+        :event {"click" ":show-progress-editor"}
        }
       }
      }
      "r" {
       :type :popup, :layout nil
-      :props {"visible" "@:state :show-editor?"}
+      :props {"visible" "#:show-editor?"}
       :attrs {}
       :presets #{}
       :style {}
@@ -956,12 +973,12 @@
            }
            "j" {
             :type :input, :layout nil
-            :props {"value" "@:state :progress"}
-            :attrs {}
+            :props {"value" "#:progress"}
+            :attrs {"type" "\"number"}
             :presets #{}
             :style {}
             :children {}
-            :event {"input" ":local/book-progress-value"}
+            :event {"input" ":progress"}
            }
           }
          }
@@ -995,7 +1012,7 @@
             :presets #{}
             :style {}
             :children {}
-            :event {"click" ":book/submit-progress"}
+            :event {"click" ":submit-progress"}
            }
           }
          }
@@ -1006,7 +1023,7 @@
      }
      "v" {
       :type :popup, :layout nil
-      :props {"visible" "@:state :show-remove?"}
+      :props {"visible" "#:show-remove?"}
       :attrs {}
       :presets #{}
       :style {}
@@ -1033,7 +1050,7 @@
           :presets #{}
           :style {}
           :children {}
-          :event {"click" ":book/confirm-remove"}
+          :event {"click" ":confirm-remove"}
          }
         }
        }
@@ -1072,7 +1089,7 @@
         :presets #{}
         :style {}
         :children {}
-        :event {"input" ":local/username"}
+        :event {"input" ":username"}
        }
        "j" {
         :type :space, :layout nil
@@ -1089,7 +1106,7 @@
         :presets #{}
         :style {}
         :children {}
-        :event {"input" ":local/password"}
+        :event {"input" ":password"}
        }
        "v" {
         :type :space, :layout nil
@@ -1178,6 +1195,7 @@
       :presets #{}
       :style {}
       :children {}
+      :event {"click" ":reconnect"}
      }
      "b" {
       :type :space, :layout nil
